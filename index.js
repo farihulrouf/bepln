@@ -18,12 +18,16 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-//const routes = require('./routes/routes');
-const customers = require('./routes/customers');
-const transactions = require('./routes/transactions');
-//app.use('/api', routes)
+const customers = require('./routes/customers')
+const transactions = require('./routes/transactions')
+const users = require('./routes/users')
+
 app.use('/customers', customers)
 app.use('/transactions', transactions)
+app.use('/users', users)
+
+
+//app.use('/users', users)
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
 })
