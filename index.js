@@ -12,8 +12,9 @@ const transactions = require('./routes/transactions')
 const users = require('./routes/users')
 
 app.get('/', (req, res) => {
-    res.status(200).json('Welcome, your app is working well');
+    res.send('Hey this is my API running 🥳')
 })
+  
 
 app.use('/customers', customers)
 app.use('/transactions', transactions)
