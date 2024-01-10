@@ -5,11 +5,11 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 router.post("/register", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, typeuser} = req.body;
 
     // console.log(userusername, email, password);
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !typeuser) {
       return res.status(400).json({
         success: false,
         message: "Please enter All Fields",
@@ -35,6 +35,7 @@ router.post("/register", async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      typeuser
     });
 
     return res.status(200).json({
@@ -83,6 +84,7 @@ router.post("/login", async (req, res) => {
 
     let jwtToken = jwt.sign(
         {
+            user_id: user._id,
             email: user.email,
             username: user.username        },
         

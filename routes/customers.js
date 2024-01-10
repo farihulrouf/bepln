@@ -1,7 +1,7 @@
 const express = require('express');
 const Model = require('../models/customer');
 const router = express.Router();
-
+const auth = require('../middlewares/authJwt')
 //Post Method
 router.post('/post', async (req, res) => {
     const data = new Model({
@@ -22,7 +22,7 @@ router.post('/post', async (req, res) => {
 })
 
 //Get all Method
-router.get('/getAll', async (req, res) => {
+router.get('/getAll',auth.protect, async (req, res) => {
     try {
         const data = await Model.find();
         res.json(data)
